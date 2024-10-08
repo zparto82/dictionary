@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>ذخیره لغات</title>
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+  <body>
+    <div class="loader-container">
+      <div class="loader"></div>
+    </div>
+    <div class="container">
+      <div class="inputs-parent-elem">
+        <input type="text" id="origin-text-input" placeholder="متن" />
+        به
+        <input type="text" id="translated-text-input" placeholder="ترجمه" />
+      </div>
+
+      <button id="save-word-btn">ذخیره</button>
+      <button id="open-iframe-btn">ترجمه</button>
+    </div>
+    <ul id="words-list"></ul>
+    <div class="cover" id="cover"></div>
+    <iframe src="https://abadis.ir/" id="iframe" frameborder="0"></iframe>
+    <script src="js/app.js"></script>
+  </body>
+</html>

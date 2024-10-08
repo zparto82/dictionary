@@ -1,0 +1,229 @@
+@font-face {
+  font-family: rubik;
+  src: url("./Rubik-Light.ttf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: rubik;
+  transition: 0.15s;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
+  padding-bottom: 30px;
+  position: relative;
+}
+
+.inputs-parent-elem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 30px 0;
+}
+
+input {
+  width: 50%;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  padding: 8px;
+  border: 1px solid black;
+}
+
+button {
+  color: white;
+  background: rgba(0, 0, 255, 0.8);
+  padding: 0px 13px;
+  height: 35px;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+button:hover {
+  background-color: blue;
+}
+#open-iframe-btn {
+  align-self: flex-start;
+  margin-right: 10px;
+  background-color: rgba(128, 0, 128, 0.808);
+}
+#open-iframe-btn:hover {
+  background-color: purple;
+}
+
+ul {
+  padding: 30px;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+ul li {
+  font-size: 1.3rem;
+  padding: 20px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  visibility: visible;
+  opacity: 1;
+}
+.translted-txt.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+li:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+li:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+li.nothing {
+  background: none;
+  justify-content: center;
+  margin-top: 2rem;
+}
+li div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+h2 {
+  color: red;
+}
+.cover {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  right: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+}
+
+iframe {
+  min-width: 90%;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 90%;
+  margin: auto;
+  opacity: 0;
+  visibility: hidden;
+}
+
+iframe.show,
+.cover.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.remove-word-btn {
+  background-color: rgba(255, 0, 0, 0.7);
+}
+
+.remove-word-btn:hover {
+  background-color: rgba(255, 0, 0, 1);
+}
+
+.hide-translted-btn {
+  background-color: rgba(0, 255, 0, 0.7);
+}
+
+.hide-translted-btn:hover {
+  background-color: rgba(0, 255, 0, 1);
+}
+.loader-container {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  visibility: visible;
+}
+.loader-container.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 50px;
+  padding: 8px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #25b09b;
+  --_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--_m);
+  mask: var(--_m);
+  -webkit-mask-composite: source-out;
+  mask-composite: subtract;
+  animation: l3 1s infinite linear;
+}
+
+
+
+/* HTML: <div class="loader"></div> */
+.btn-loader {
+    width: 50px;
+    aspect-ratio: 4;
+    --_g: no-repeat radial-gradient(circle closest-side,#fff 90%,#0000);
+    background: 
+      var(--_g) 0%   50%,
+      var(--_g) 50%  50%,
+      var(--_g) 100% 50%;
+    background-size: calc(100%/3) 100%;
+    animation: l7 1s infinite linear;
+  }
+
+  .remove-word-btn .btn-loader{
+    width: 30px;
+  }
+  @keyframes l7 {
+      33%{background-size:calc(100%/3) 0%  ,calc(100%/3) 100%,calc(100%/3) 100%}
+      50%{background-size:calc(100%/3) 100%,calc(100%/3) 0%  ,calc(100%/3) 100%}
+      66%{background-size:calc(100%/3) 100%,calc(100%/3) 100%,calc(100%/3) 0%  }
+  }
+@keyframes l3 {
+  to {
+    transform: rotate(1turn);
+  }
+}
+@media screen and (max-width: 768px) {
+    .inputs-parent-elem{
+        padding: 30px 10px;
+    }
+  ul {
+    padding: 10px;
+  }
+
+  ul li {
+    padding: 12px 10px !important;
+  }
+
+  .remove-word-btn,
+  .hide-translted-btn {
+    font-size: 0.9rem;
+    padding: 3px 7px;
+  }
+}
