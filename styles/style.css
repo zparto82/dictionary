@@ -9,6 +9,7 @@
   box-sizing: border-box;
   font-family: rubik;
   transition: 0.15s;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .container {
@@ -48,13 +49,12 @@ button {
   outline: none;
   cursor: pointer;
   font-size: 1.1rem;
+  -webkit-tap-highlight-color: transparent;
 }
 button:hover {
   background-color: blue;
 }
 #open-iframe-btn {
-  align-self: flex-start;
-  margin-right: 10px;
   background-color: rgba(128, 0, 128, 0.808);
 }
 #open-iframe-btn:hover {
@@ -95,10 +95,10 @@ li.nothing {
   justify-content: center;
   margin-top: 2rem;
 }
-li div{
-    display: flex;
-    align-items: center;
-    gap: 10px;
+li div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 h2 {
   color: red;
@@ -142,11 +142,18 @@ iframe.show,
 }
 
 .hide-translted-btn {
-  background-color: rgba(0, 255, 0, 0.7);
+  background-color: rgba(0, 0, 255, 0.8);
 }
 
 .hide-translted-btn:hover {
-  background-color: rgba(0, 255, 0, 1);
+  background-color: blue;
+}
+.header-btn-sec {
+  width: 100%;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .loader-container {
   width: 100%;
@@ -181,38 +188,39 @@ iframe.show,
   animation: l3 1s infinite linear;
 }
 
-
-
 /* HTML: <div class="loader"></div> */
 .btn-loader {
-    width: 50px;
-    aspect-ratio: 4;
-    --_g: no-repeat radial-gradient(circle closest-side,#fff 90%,#0000);
-    background: 
-      var(--_g) 0%   50%,
-      var(--_g) 50%  50%,
-      var(--_g) 100% 50%;
-    background-size: calc(100%/3) 100%;
-    animation: l7 1s infinite linear;
-  }
+  width: 50px;
+  aspect-ratio: 4;
+  --_g: no-repeat radial-gradient(circle closest-side, #fff 90%, #0000);
+  background: var(--_g) 0% 50%, var(--_g) 50% 50%, var(--_g) 100% 50%;
+  background-size: calc(100% / 3) 100%;
+  animation: l7 1s infinite linear;
+}
 
-  .remove-word-btn .btn-loader{
-    width: 30px;
+.remove-word-btn .btn-loader {
+  width: 30px;
+}
+@keyframes l7 {
+  33% {
+    background-size: calc(100% / 3) 0%, calc(100% / 3) 100%, calc(100% / 3) 100%;
   }
-  @keyframes l7 {
-      33%{background-size:calc(100%/3) 0%  ,calc(100%/3) 100%,calc(100%/3) 100%}
-      50%{background-size:calc(100%/3) 100%,calc(100%/3) 0%  ,calc(100%/3) 100%}
-      66%{background-size:calc(100%/3) 100%,calc(100%/3) 100%,calc(100%/3) 0%  }
+  50% {
+    background-size: calc(100% / 3) 100%, calc(100% / 3) 0%, calc(100% / 3) 100%;
   }
+  66% {
+    background-size: calc(100% / 3) 100%, calc(100% / 3) 100%, calc(100% / 3) 0%;
+  }
+}
 @keyframes l3 {
   to {
     transform: rotate(1turn);
   }
 }
 @media screen and (max-width: 768px) {
-    .inputs-parent-elem{
-        padding: 30px 10px;
-    }
+  .inputs-parent-elem {
+    padding: 30px 10px;
+  }
   ul {
     padding: 10px;
   }

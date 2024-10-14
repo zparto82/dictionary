@@ -22,7 +22,9 @@ const getWordsFromDB = () => {
 const saveWordInDB = () => {
   if (originTextInput.value.trim() && translatedTextInput.value.trim()) {
     saveWordBtn.innerHTML = '<div class="btn-loader"></div>';
-    let isHaveThisWord = wordsArray.some((word) => word.word === originTextInput.value.trim());
+    let isHaveThisWord = wordsArray.some(
+      (word) => word.word === originTextInput.value.trim()
+    );
 
     if (!isHaveThisWord) {
       let newWordInfo = {
@@ -48,12 +50,16 @@ const saveWordInDB = () => {
 const wordsGenerator = () => {
   wordsList.innerHTML = "";
   if (wordsArray.length) {
-    wordsArray.forEach((word, index) => {
-      wordsList.insertAdjacentHTML(
-        "beforeend",
-        `<li>
+    wordsArray
+      .sort(() => 0.5 - Math.random())
+      .forEach((word, index) => {
+        wordsList.insertAdjacentHTML(
+          "beforeend",
+          `<li>
         <span>${index + 1}_ ${word.word}: 
-            <span class="translted-txt translted-txt-${word.id}">${word.translated}</span>
+            <span class="translted-txt translted-txt-${word.id}">${
+            word.translated
+          }</span>
         </span>
         
         <div>
@@ -61,11 +67,12 @@ const wordsGenerator = () => {
             <button class="remove-word-btn" id="${word.id}">حذف</button>
         </div>
       </li>`
-      );
-    });
+        );
+      });
 
     let removeWordBtns = document.querySelectorAll(".remove-word-btn");
     let hideWordBtns = document.querySelectorAll(".hide-translted-btn");
+    let hideAllWordsBtn = document.querySelector("#hide-allWords-btn");
 
     removeWordBtns.forEach((btn) =>
       btn.addEventListener("click", () => {
@@ -81,11 +88,40 @@ const wordsGenerator = () => {
           btn.innerHTML = "نمایش";
         } else {
           btn.innerHTML = "پنهان";
+          hideAllWordsBtn.classList.remove("hide");
+          hideAllWordsBtn.innerHTML = "پنهان همه";
         }
       })
     );
+
+    hideAllWordsBtn.addEventListener("click", () => {
+      let mainBtn = null;
+
+      hideAllWordsBtn.classList.toggle("hide");
+
+      hideWordBtns.forEach((hideBtn, index) => {
+        mainBtn = document.querySelector(`.translted-txt-${hideBtn.id}`);
+
+        if (hideAllWordsBtn.className.includes("hide")) {
+          hideBtn.innerHTML = "نمایش";
+          mainBtn.classList.add("hide");
+        } else {
+          hideBtn.innerHTML = "پنهان";
+          mainBtn.classList.remove("hide");
+        }
+      });
+
+      if (hideAllWordsBtn.innerHTML === "پنهان همه") {
+        hideAllWordsBtn.innerHTML = "نمایش همه";
+      } else {
+        hideAllWordsBtn.innerHTML = "پنهان همه";
+      }
+    });
   } else {
-    wordsList.insertAdjacentHTML("beforeend", `<li class="nothing"><h2>هیچ کلمه ای نیست!</h2></li>`);
+    wordsList.insertAdjacentHTML(
+      "beforeend",
+      `<li class="nothing"><h2>هیچ کلمه ای نیست!</h2></li>`
+    );
   }
   loaderContainer.classList.add("hide");
 };
