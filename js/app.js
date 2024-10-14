@@ -11,7 +11,7 @@ const iFrame = document.getElementById("iframe");
 let wordsArray = null;
 
 const getWordsFromDB = () => {
-  fetch("https://658056126ae0629a3f54f125.mockapi.io/words")
+  fetch("https://670cf1997e5a228ec1d2085c.mockapi.io/api/v1/words")
     .then((res) => res.json())
     .then((res) => {
       wordsArray = res;
@@ -32,7 +32,7 @@ const saveWordInDB = () => {
         translated: translatedTextInput.value.trim(),
       };
 
-      fetch("https://658056126ae0629a3f54f125.mockapi.io/words", {
+      fetch("https://670cf1997e5a228ec1d2085c.mockapi.io/api/v1/words", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(newWordInfo),
@@ -136,10 +136,13 @@ const removeWordHandler = (btn) => {
   if (wantRemove) {
     btn.innerHTML = '<div class="btn-loader"></div>';
 
-    fetch(`https://658056126ae0629a3f54f125.mockapi.io/words/${wordId}`, {
-      method: "DELETE",
-      headers: { "content-type": "application/json" },
-    }).then(() => {
+    fetch(
+      `https://670cf1997e5a228ec1d2085c.mockapi.io/api/v1/words/${wordId}`,
+      {
+        method: "DELETE",
+        headers: { "content-type": "application/json" },
+      }
+    ).then(() => {
       getWordsFromDB();
     });
   }
